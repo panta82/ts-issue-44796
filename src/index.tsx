@@ -11,7 +11,16 @@ import {
   useForm as _useForm,
   UseControllerReturn,
   useController as _useController,
+  get as _get,
 } from "react-hook-form";
+
+export const getAtPath = _get as <
+  TFieldValues extends IFieldValues,
+  TFieldPath extends FieldPath<TFieldValues>
+>(
+  values: TFieldValues,
+  fieldPath: TFieldPath
+) => FieldPathValue<TFieldValues, TFieldPath>;
 
 export function enumize<T extends string>(
   arrayOfAllPossibleValues: readonly T[]
@@ -142,8 +151,10 @@ const SecondWrapper = <
 }: {
   name: TFieldPath;
   control: IFormControl<TFieldValues>;
+  errors?: string;
 } & IBaseProps<TValue>) => {
-  const { field } = useController(name, control, null);
+  const { field, formState } = useController(name, control, null);
+  const errors = getAtPath(formState?.errors, name);
   return (
     <FirstWrapper
       value={field.value as any}
@@ -153,6 +164,7 @@ const SecondWrapper = <
     >
       {name}
       {control}
+      {errors}
     </FirstWrapper>
   );
 };
