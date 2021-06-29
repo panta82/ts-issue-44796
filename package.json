@@ -1,0 +1,19 @@
+{
+  "name": "ts-issue-44796",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-hook-form": "^7.9.0",
+    "typescript": "^4.3.4"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
